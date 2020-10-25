@@ -1,0 +1,60 @@
+
+import turtle as trtl
+t = trtl.Turtle()
+t.speed(0)
+def horizLines():
+  t.penup()
+  t.backward(300)
+  t.right(90)
+  t.forward(300)
+  t.left(90)
+  t.pendown()
+  t.forward(600)
+  for i in range (30):
+    t.penup()
+    t.backward(600)
+    t.left(90)
+    t.forward(20)
+    t.right(90)
+    t.pendown()
+    t.forward(600)
+
+def vertLines():
+  t.right(90)
+  for i in range (30):
+    t.forward(600)
+    t.penup()
+    t.right(90)
+    t.forward(20)
+    t.left(90)
+    t.backward(600)
+    t.pendown()
+  t.forward(600)
+
+def Grid():
+  horizLines();
+  vertLines();
+
+def drawGraph():
+  t.pencolor("red")
+  t.pensize(3)
+  t.penup()
+  print("\nInstructions:\nPut parentheses around x like so: (x)\nWhen raising to a power, use ** instead of ^\nThe larger the squares, the more curved the graph.  The smaller the squares, the more segmented the graph.\nDisclaimer: we didn't have enough time to fully figure out exponents less than 1 or logarithms.")
+  width = int(input("What would you like the width of each square to be? "))
+  height = int(input("What would you like the height of each square to be? "))
+  equation = input("\nEnter your equation here: ")
+  a = -150
+  while a < 160:
+    b = str(a)
+    c = equation.replace("x",b)
+    d = eval(c)
+    x = int(b)
+    t.goto((20 / width) * x, (20 / height) * d)
+    t.pendown()
+    a += 1
+
+Grid();
+drawGraph();
+
+wn = trtl.Screen()
+wn.mainloop()
